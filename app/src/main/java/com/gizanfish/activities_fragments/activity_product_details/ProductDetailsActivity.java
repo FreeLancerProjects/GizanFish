@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 //import com.anaqaphone.Animate.CircleAnimationUtil;
 import com.gizanfish.R;
+import com.gizanfish.activities_fragments.activity_cart.CartActivity;
 import com.gizanfish.activities_fragments.activity_images.ImagesActivity;
 import com.gizanfish.adapters.ProductColorsAdapter;
 import com.gizanfish.adapters.ProductDetialsSlidingImage_Adapter;
@@ -136,7 +137,12 @@ public class ProductDetailsActivity extends AppCompatActivity implements Listene
             }
         });
         binding.flAddToCart.setOnClickListener(v -> addToCart(singleProductDataModel));
+        binding.flSearch.setOnClickListener(view -> {
 
+            Intent intent = new Intent(this, CartActivity.class);
+            startActivityForResult(intent, 100);
+
+        });
 
     }
 
@@ -164,18 +170,18 @@ public class ProductDetailsActivity extends AppCompatActivity implements Listene
 //                    } else {
 //                        binding.expandLayout.expand(true);
 //                    }
-                Toast.makeText(this, getResources().getString(R.string.add_to_cart), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.added_to_cart), Toast.LENGTH_SHORT).show();
             } else {
                 ItemCartModel itemCartModel = new ItemCartModel(product_id, singleProductDataModel.getTitle(), singleProductDataModel.getPrice(), Integer.parseInt(binding.tvAmount.getText().toString()), singleProductDataModel.getImage());
                 cartSingleton.addItem(itemCartModel);
 
-                Toast.makeText(this, getResources().getString(R.string.add_to_cart), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.added_to_cart), Toast.LENGTH_SHORT).show();
             }
         } else {
             ItemCartModel itemCartModel = new ItemCartModel(product_id, singleProductDataModel.getTitle(), singleProductDataModel.getPrice(), Integer.parseInt(binding.tvAmount.getText().toString()), singleProductDataModel.getImage());
             cartSingleton.addItem(itemCartModel);
 
-            Toast.makeText(this, getResources().getString(R.string.add_to_cart), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.added_to_cart), Toast.LENGTH_SHORT).show();
         }
         binding.setCartcount(cartSingleton.getItemCartModelList().size());
     }

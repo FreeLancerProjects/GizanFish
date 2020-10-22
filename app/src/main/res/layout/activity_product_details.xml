@@ -100,13 +100,13 @@
                     android:layout_width="17dp"
                     android:layout_height="17dp"
                     android:layout_margin="2dp"
-                    android:background="@drawable/circle_primary2"
+                    android:background="@drawable/circle_trans_white"
                     android:clickable="false"
                     android:gravity="center"
                     android:longClickable="false"
                     android:singleLine="true"
                     android:text='@{String.valueOf(cartcount),default="0"}'
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="12sp" />
 
             </FrameLayout>

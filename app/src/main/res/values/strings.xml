@@ -126,6 +126,7 @@
     <string name="read_more">Read More</string>
     <string name="news_details">News  Details</string>
     <string name="add_to_cart">Add To Cart</string>
+    <string name="added_to_cart">Added to Cart</string>
     <string name="sub_categoy">Sub Category</string>
     <string name="products">Products</string>
     <string name="grid">Grid</string>
@@ -197,6 +198,7 @@
     <string name="electronic_cards">Electronic Cards</string>
     <string name="descriptions">Descriptions</string>
     <string name="preparation_way">Preparation way</string>
-    <string name="quantity">Quantity</string>
+    <string name="quantity">ِAmount</string>
+    <string name="marketer_accept">Order Accepted</string>
 
 </resources>

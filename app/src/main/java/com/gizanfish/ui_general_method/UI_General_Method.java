@@ -134,16 +134,13 @@ public class UI_General_Method {
     public static void orderStatus(TextView textView, String status) {
     if (status.equals("new_order")) {
             textView.setText(textView.getContext().getString(R.string.new_order));
-        } else if (status.equals("driver_accept")) {
-            textView.setText(textView.getContext().getString(R.string.accepted));
+        } else if (status.equals("marketer_accept")) {
+            textView.setText(textView.getContext().getString(R.string.marketer_accept));
 
-        } else if (status.equals("driver_delivery")) {
+        } else if (status.equals("order_delivery")) {
             textView.setText(textView.getContext().getString(R.string.in_way));
 
-        } else if (status.equals("driver_refuser")) {
-            textView.setText(textView.getContext().getString(R.string.refused));
-
-        } else if (status.equals("driver_end")) {
+        }  else if (status.equals("marketer_end")) {
             textView.setText(textView.getContext().getString(R.string.completed));
 
         }
