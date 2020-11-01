@@ -100,23 +100,13 @@ public class FireBaseMessaging extends FirebaseMessagingService {
     }
 
 
-    @Override
-    public void onNewToken(@NonNull String s) {
-        super.onNewToken(s);
-        if (getSession().equals(Tags.session_login)) {
-            updateTokenFireBase(s);
-
-        }
-
-    }
-
     @SuppressLint("NewApi")
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void createNewNotificationVersion(Map<String, String> map) {
 
-        String not_type = map.get("notification_type");
+        String not_type = map.get("action_type");
 
-        if (not_type.equals("action_note")) {
+        if (not_type.equals("nothing")) {
             String sound_Path = "android.resource://" + getPackageName() + "/" + R.raw.not;
 
             String title = map.get("title");
@@ -146,7 +136,7 @@ public class FireBaseMessaging extends FirebaseMessagingService {
 
             Intent intent = null;
 
-                intent = new Intent(this, NotificationActivity.class);
+            intent = new Intent(this, NotificationActivity.class);
 
 
             intent.putExtra("not", true);
@@ -211,13 +201,9 @@ public class FireBaseMessaging extends FirebaseMessagingService {
                         @Override
                         public void run() {
 
-                            if (!image.equals("0")) {
-                                Picasso.get().load(Uri.parse(Tags.IMAGE_URL + image)).resize(250, 250).into(target);
-                            } else {
-                                Log.e("ldlfllf", image);
-                                Picasso.get().load(R.drawable.logo).resize(250, 250).into(target);
+                            // Log.e("ldlfllf", image);
+                            Picasso.get().load(R.drawable.logo).resize(250, 250).into(target);
 
-                            }
 
                         }
                     }, 1);
@@ -229,9 +215,9 @@ public class FireBaseMessaging extends FirebaseMessagingService {
 
     private void createOldNotificationVersion(Map<String, String> map) {
 
-        String not_type = map.get("notification_type");
+        String not_type = map.get("action_type");
 
-        if (not_type.equals("action_note")) {
+        if (not_type.equals("nothing")) {
             String sound_Path = "android.resource://" + getPackageName() + "/" + R.raw.not;
 
             String title = map.get("title");
@@ -251,7 +237,7 @@ public class FireBaseMessaging extends FirebaseMessagingService {
 
             Intent intent = null;
 
-                intent = new Intent(this, NotificationActivity.class);
+            intent = new Intent(this, NotificationActivity.class);
 
             intent.putExtra("not", true);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -309,14 +295,7 @@ public class FireBaseMessaging extends FirebaseMessagingService {
                         public void run() {
 
 
-                            if (!image.equals("0")) {
-                                Picasso.get().load(Uri.parse(Tags.IMAGE_URL + image)).resize(250, 250).into(target);
-                            } else {
-                                Log.e("ldlfllf", image);
-
-                                Picasso.get().load(R.drawable.logo).resize(250, 250).into(target);
-
-                            }
+                            Picasso.get().load(R.drawable.logo).resize(250, 250).into(target);
 
 
                         }
@@ -326,58 +305,6 @@ public class FireBaseMessaging extends FirebaseMessagingService {
 
     }
 
-
-    private void updateTokenFireBase(String token) {
-
-
-        FirebaseInstanceId.getInstance()
-                .getInstanceId().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-
-//                try {
-//
-//                    Api.getService(Tags.base_url)
-//                            .updatePhoneToken("Bearer " + preferences.getUserData(this).getData().getToken(), token, preferences.getUserData(this).getData().getId(), 1)
-//                            .enqueue(new Callback<ResponseBody>() {
-//                                @Override
-//                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                                    if (response.isSuccessful() && response.body() != null) {
-//                                        Log.e("token", "updated successfully");
-//                                    } else {
-//                                        try {
-//
-//                                            Log.e("error", response.code() + "_" + response.errorBody().string());
-//                                        } catch (IOException e) {
-//                                            e.printStackTrace();
-//                                        }
-//                                    }
-//                                }
-//
-//                                @Override
-//                                public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                                    try {
-//
-//                                        if (t.getMessage() != null) {
-//                                            Log.e("error", t.getMessage());
-//                                            if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-//                                                Toast.makeText(com.hasryApp.notifications.FireBaseMessaging.this, R.string.something, Toast.LENGTH_SHORT).show();
-//                                            } else {
-//                                                Toast.makeText(com.hasryApp.notifications.FireBaseMessaging.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//                                            }
-//                                        }
-//
-//                                    } catch (Exception e) {
-//                                    }
-//                                }
-//                            });
-//                } catch (Exception e) {
-//
-//
-//                }
-
-            }
-        });
-    }
 
     private String getCurrentUser_id() {
         return String.valueOf(preferences.getUserData(this).getUser().getId());
