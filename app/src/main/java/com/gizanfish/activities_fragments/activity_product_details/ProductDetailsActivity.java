@@ -249,7 +249,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements Listene
 
         } catch (Exception e) {
             binding.tvtitle.setText(body.getTitle());
-            binding.tvData.setText(singleProductDataModel.getContents());
+            binding.tvData.setText(body.getContents());
 
             Log.e("kskskks", e.toString());
         }
